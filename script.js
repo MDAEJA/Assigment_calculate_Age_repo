@@ -7,34 +7,18 @@ let result = document.querySelector("#enterage");
 
 function calculateAge(){
     let date_of_birth = birthday.value;
-    let current_year = new Date();
-    let birth_year = new Date(date_of_birth);
+    let currentDate= new Date();
+    let birthdayDate = new Date(date_of_birth);
+    let totalYear = currentDate.getFullYear() - birthdayDate.getFullYear();
+    let month = currentDate.getMonth() - birthdayDate.getMonth();
+    
 //    if you not enter the dob.
-     if(date_of_birth === "") {
-         alert("please enter your age");
-           }
-        //    stage 2
-     else if(birth_year.getMonth() > current_year.getMonth()){
-    let age = current_year.getFullYear() - birth_year.getFullYear();
-    let current_age = age - 1;
-    result.innerText = `your age is ${current_age} year old`;
-   
-}
-else{
-    let age = current_year.getFullYear() - birth_year.getFullYear();
-    // console.log(current_year);
-    // console.log(birth_year);
-    // console.log(age);
-
-result.innerText = `your age is ${age} year old`;
-}
+     if(date_of_birth === "") alert("please enter your age");
+           else{
+            if (month < 0 ||(month === 0 && currentDate.getDate() < birthdayDate.getDate())){
+                   totalYear--;
+            }
+            result.innerText = `Your age is ${totalYear} Year old`;
+           }  
 }
 butn.addEventListener("click", calculateAge);
-
-
-
-
-
-
-
-
